@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Women's Dress Collection</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    background: #f8f9fa;
+    color: #222;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #111;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 15px 18px 25px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #111;
+  }
+
+  .card-category {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+
+  .price {
+    font-weight: 700;
+    color: #d63384;
+    font-size: 1rem;
+  }
+
+  .actions {
+    margin-top: 12px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: #d63384;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background: #b42d6e;
+  }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+    .card img {
+      height: 280px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Women's Dress Collection</h1>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <img src="dress/women.jpg" alt="Floral Maxi Dress">
+        <div class="card-content">
+          <div class="card-title">Floral Maxi Dress</div>
+          <div class="card-category">Casual · Summer</div>
+          <div class="price">$59.00</div>
+          <div class="actions">
+            <a href="cart.html" class="btn">Add to Cart</a>
+            <a href="whislist.html" class="btn">Whislist</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="dress/women1.jpg" alt="Elegant Evening Gown">
+        <div class="card-content">
+          <div class="card-title">Elegant Evening Gown</div>
+          <div class="card-category">Formal · Party</div>
+          <div class="price">$129.00</div>
+          <div class="actions">
+            <a href="cart.html" class="btn">Add to Cart</a>
+            <a href="whislist.html" class="btn">Whislist</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="dress/women2.jpg" alt="Denim Dress">
+        <div class="card-content">
+          <div class="card-title">Denim Shirt Dress</div>
+          <div class="card-category">Casual · Streetwear</div>
+          <div class="price">$44.00</div>
+          <div class="actions">
+            <a href="cart.html" class="btn">Add to Cart</a>
+            <a href="whislist.html" class="btn">Whislist</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://via.placeholder.com/400x500?text=Boho+Dress" alt="Bohemian Dress">
+        <div class="card-content">
+          <div class="card-title">Bohemian Summer Dress</div>
+          <div class="card-category">Casual · Beach</div>
+          <div class="price">$49.00</div>
+          <div class="actions">
+            <a href="cart.html" class="btn">Add to Cart</a>
+            <a href="whislist.html" class="btn">Whislist</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

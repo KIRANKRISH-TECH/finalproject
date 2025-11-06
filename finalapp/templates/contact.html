@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - My Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .contact-card {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .navbar-brand, .nav-link {
+      color: white !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container"> 
+      <a class="navbar-brand" href="index.html">NexaCart</a>
+      <div class="navbar-nav">
+        <a class="nav-link" href="home.html">Home</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link active text-warning" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <div class="contact-card">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name" required name="fullname">
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email" required name="emailaddress">
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-control" id="message" rows="4" placeholder="Write your message..." required name="message"></textarea>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-dark">Send Message</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="text-center mt-5 mb-3 text-muted">
+    &copy; 2025 MySite | All Rights Reserved
+  </footer>
+
+</body>
+</html>
+
