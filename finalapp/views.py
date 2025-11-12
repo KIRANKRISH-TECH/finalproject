@@ -41,7 +41,6 @@ def login_view(request):
     return render(request, 'login.html')
 
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -59,3 +58,18 @@ def shoes(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+
+
+
+from django.shortcuts import render,get_object_or_404
+from .models import SingleProduct
+def product_list(request):
+    products = SingleProduct.objects.all()
+    return render(request, 'men.html', {'products': products})
+
+
+def product_detail(request,product_id):
+    product = get_object_or_404(SingleProduct, id=product_id)
+    return render(request, 'product_deatil.html', {'product': product})
+

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#home">Home</a>
+            <a class="nav-link" href="{% url 'home'% }">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'men' %}">Men</a>
@@ -44,23 +45,23 @@
           </li>
         
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
 
-              <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
         </ul>
         <div class="d-flex align-items-center">
 
        <!-- Signin Button -->
-<button class="btn position-relative me-3" onclick="window.location.href='register.html'">
+<button class="btn position-relative me-3" onclick="window.location.href='{% url 'register' %}'">
   <i class="fa-solid fa-right-to-bracket signin-icon"></i>
 </button>
 
+
+
 <!-- Login Button -->
-<button class="btn position-relative me-3" onclick="window.location.href='login.html'">
+<button class="btn position-relative me-3" onclick="window.location.href='{% url 'login_view' %}'">
   <i class="fa-solid fa-user login-icon"></i>
 </button>
+
 
 <!-- Wishlist Button -->
 <button class="btn position-relative me-3" onclick="window.location.href='whislist.html'">
@@ -83,7 +84,7 @@
   <div id="carousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="dress/caro image.jpg" class="d-block w-100" alt="Fashion Collection">
+          <img src="{% static 'img/caro image.jpg' %}" class="d-block w-100" alt="fashion collection">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -107,7 +108,7 @@
         <div class="col-md-3 col-sm-6">
           <div class="card category-card">
             <a href="{% url 'men' %}">
-            <img src="https://i.pinimg.com/736x/4a/79/f9/4a79f9e6b9d9afeaffd6a1a8102eb1a5.jpg" class="card-img-top category-img" alt="Men">
+            <img src="{% static 'img/mencard.jpg'%}" class="card-img-top category-img" alt="Men">
             <div class="card-body text-center">
               <h5 class="category-title">Men</h5>
               <div class="buy-btn">
@@ -121,7 +122,7 @@
         <div class="col-md-3 col-sm-6">
           <div class="card category-card">
             <a href="{% url 'women' %}">
-            <img src="https://i.pinimg.com/736x/1c/d1/6a/1cd16a1d78f5411ad3d807057dc81420.jpg" class="card-img-top category-img" alt="Women">
+            <img src="{% static 'img/women card.jpg'%}" class="card-img-top category-img" alt="Women">
             <div class="card-body text-center">
               <h5 class="category-title">Women</h5>
               <div class="buy-btn">
@@ -163,10 +164,24 @@
         </div>
       </div>
     </div>
-
-
-
   </section>  
+
+    <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="container text-center">
+      <h2>About NexaCart</h2>
+      <p class="mt-3">
+        NexaCart is your one-stop destination for premium-quality fashion at affordable prices.
+        Our mission is to make style accessible to everyone without compromising on quality.
+        From trendy outfits to comfortable footwear, we offer a diverse range of products for men, women, and kids.
+      </p>
+      <p>
+        We believe in blending innovation with simplicity to provide a seamless shopping experience.
+        Every product at NexaCart is carefully curated to match your lifestyle, ensuring elegance and comfort in every purchase.
+      </p>
+    </div>
+  </section>
+
 
   <!-- FOOTER -->
   <footer class="bg-dark text-white py-4">
@@ -184,7 +199,6 @@
          <a class="nav-link text-white" href="sigin.html">women</a>
         <a class="nav-link text-white" href="sigin.html">kids</a>
         <a class="nav-link text-white" href="sigin.html">Shoes</a>
-        <a class="nav-link text-white" href="about.html">About</a>
         <a class="nav-link text-white" href="contact.html">Contact</a>
             
 

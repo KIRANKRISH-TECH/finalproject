@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -112,11 +113,11 @@
     <div class="card-grid">
 
       <div class="card">
-        <img src="dress/combo dress.jpg" alt="Floral Kids Dress">
+      <a href="{% url 'product_detail' 1 %}"><img src="{% static 'img/men dress.jpg'%}" alt="printed Shirt"></a>
         <div class="card-content">
-          <div class="card-title">Floral Kids Dress</div>
-          <div class="card-category">Girls · Summer</div>
-          <div class="price">$29.00</div>
+          <div class="card-title">Printed Shirt</div>
+          <div class="card-category">Stylish Half sleeve Casual Printed Shirts & Party Wear Casual shirts</div>
+          <div class="price">$299.00</div>
           <div class="actions">
             <a href="cart.html" class="btn">Add to Cart</a>
             <a href="whislist.html" class="btn">Whislist</a>
@@ -125,11 +126,11 @@
       </div>
 
       <div class="card">
-        <img src="dress/men dresss.jpg" alt="Denim Dungaree for Kids">
+         <a href="{% url 'product_detail' 2 %}"><img src="{% static 'img/men_dresss.jpg' %}" alt="Denim Dungaree for Kids"></a>
         <div class="card-content">
-          <div class="card-title">Denim Dungaree</div>
-          <div class="card-category">Boys · Casual</div>
-          <div class="price">$35.00</div>
+          <div class="card-title">Jersey</div>
+          <div class="card-category">Men Printed Round Neck Jersey</div>
+          <div class="price">$359.00</div>
           <div class="actions">
             <a href="cart.html" class="btn">Add to Cart</a>
              <a href="whislist.html" class="btn">Whislist</a>
@@ -138,7 +139,7 @@
       </div>
 
       <div class="card">
-        <img src="dress/men.jpg" alt="Party Frock for Girls">
+         <a href="{% url 'product_detail' 3 %}"></a><img src="{% static 'img/combo dress.jpg' %}" alt="Party Frock for Girls">
         <div class="card-content">
           <div class="card-title">Party Frock</div>
           <div class="card-category">Girls · Partywear</div>
@@ -151,7 +152,7 @@
       </div>
 
       <div class="card">
-        <img src="dress/men dress.jpg" alt="Casual T-Shirt and Shorts Set">
+         <a href="{% url 'product_detail' 4 %}"></a><img src="{% static 'img/com dress.jpg'%}" alt="Casual T-Shirt and Shorts Set">
         <div class="card-content">
           <div class="card-title">Casual T-Shirt & Shorts</div>
           <div class="card-category">Boys · Everyday</div>
@@ -163,18 +164,7 @@
         </div>
       </div>
 
-      <div class="card">
-        <img src="dress/com dress.jpg" alt="Princess Gown for Kids">
-        <div class="card-content">
-          <div class="card-title">Princess Gown</div>
-          <div class="card-category">Girls · Fancy</div>
-          <div class="price">$59.00</div>
-          <div class="actions">
-            <a href="cart.html"class="btn">Add to Cart</a>
-            <a href="whislist.html"class="btn">Whislist</a>
-          </div>
-        </div>
-      </div>
+    
 
    
         </div>
