@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -112,11 +113,11 @@
     <div class="card-grid">
 
       <div class="card">
-        <img src="dress/women.jpg" alt="Floral Maxi Dress">
+        <a href="{% url 'product_detail' 5 %}"><img src="{% static 'img/grl dress.jpg'%}" alt="Floral Maxi Dress"></a>
         <div class="card-content">
           <div class="card-title">Floral Maxi Dress</div>
-          <div class="card-category">Casual · Summer</div>
-          <div class="price">$59.00</div>
+          <div class="card-category">Casual Dress </div>
+          <div class="price">$599.00</div>
           <div class="actions">
             <a href="cart.html" class="btn">Add to Cart</a>
             <a href="whislist.html" class="btn">Whislist</a>
@@ -125,10 +126,10 @@
       </div>
 
       <div class="card">
-        <img src="dress/women1.jpg" alt="Elegant Evening Gown">
+         <a href="{% url 'product_detail' 6 %}"><img src="{% static 'img/girl dress.jpg'%}" alt="Women top"></a>
         <div class="card-content">
-          <div class="card-title">Elegant Evening Gown</div>
-          <div class="card-category">Formal · Party</div>
+          <div class="card-title">Women's Summer Tops</div>
+          <div class="card-category">Fashion </div>
           <div class="price">$129.00</div>
           <div class="actions">
             <a href="cart.html" class="btn">Add to Cart</a>
@@ -138,11 +139,11 @@
       </div>
 
       <div class="card">
-        <img src="dress/women2.jpg" alt="Denim Dress">
+        <a href="{% url 'product_detail' 7 %}"><img src="{% static 'img/women2.jpg'%}" alt="Floral Maxi Dress"></a>
         <div class="card-content">
-          <div class="card-title">Denim Shirt Dress</div>
-          <div class="card-category">Casual · Streetwear</div>
-          <div class="price">$44.00</div>
+          <div class="card-title">Denim  Dress</div>
+          <div class="card-category">Casual Streetwear</div>
+          <div class="price">$499.00</div>
           <div class="actions">
             <a href="cart.html" class="btn">Add to Cart</a>
             <a href="whislist.html" class="btn">Whislist</a>
@@ -151,11 +152,11 @@
       </div>
 
       <div class="card">
-        <img src="https://via.placeholder.com/400x500?text=Boho+Dress" alt="Bohemian Dress">
+         <a href="{% url 'product_detail' 8 %}"><img src="{% static 'img/women1.jpg'%}" alt="Floral  Dress"></a>
         <div class="card-content">
           <div class="card-title">Bohemian Summer Dress</div>
           <div class="card-category">Casual · Beach</div>
-          <div class="price">$49.00</div>
+          <div class="price">$499.00</div>
           <div class="actions">
             <a href="cart.html" class="btn">Add to Cart</a>
             <a href="whislist.html" class="btn">Whislist</a>

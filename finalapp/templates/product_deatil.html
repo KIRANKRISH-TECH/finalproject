@@ -3,14 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{product.title}}</title>
+    <title>{{ product.title }}</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        .product-image {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #222;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #007b5e;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{product.title}}</h1>
-    <img src="{{ product.image.url }}" width ="200" alt="{{ product.name }}">
-    <p><strong>Price:</strong> ${{product.price}}</p>
-    <p><strong>Description:</strong> {{product.description}}</p>
 
-    <a href="{% url 'product_list' %}">Back to all products</a>
+    <div class="container">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        </div>
+
+        <h1>{{ product.title }}</h1>
+        <p class="price">$ {{ product.price }}</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+
+        <div class="button-group">
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">← Back to Products</a>
+
+            <form method="post" action="{% url 'add_to_cart' product.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

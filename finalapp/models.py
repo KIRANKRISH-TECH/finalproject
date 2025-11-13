@@ -38,4 +38,17 @@ class SingleProduct(models.Model):
     def __str__(self):
         return self.title
 
+class Cartitem(models.Model):
+    product = models.ForeignKey(SingleProduct, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+
+    @property
+    def total_price(self):
+        return self.product.price * self.quantity
+
+    def __str__(self):
+        return f"{self.quantity} of {self.product.title}"    
+   
+
     

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -112,7 +113,7 @@
     <div class="card-grid">
 
       <div class="card">
-        <img src="dress/Shoes.jpg" alt="Running Shoes">
+          <a href="{% url 'product_detail' 13 %}"><img src="{% static 'img/shoes.jpg'%}" alt="Floral Maxi Dress"></a>
         <div class="card-content">
           <div class="card-title">Running Shoes</div>
           <div class="card-category">Men · Sports</div>
@@ -125,7 +126,7 @@
       </div>
 
       <div class="card">
-        <img src="dress/shoes1.jpg" alt="Casual Sneakers">
+           <a href="{% url 'product_detail' 14 %}"><img src="{% static 'img/shoes1.jpg'%}" alt="Floral Maxi Dress"></a>
         <div class="card-content">
           <div class="card-title">Casual Sneakers</div>
           <div class="card-category">Unisex · Everyday</div>
@@ -138,7 +139,7 @@
       </div>
 
       <div class="card">
-        <img src="dress/shoes2.jpg" alt="Formal Leather Shoes">
+        <a href="{% url 'product_detail' 15 %}"><img src="{% static 'img/shoes2.jpg'%}" alt="Floral Maxi Dress"></a>
         <div class="card-content">
           <div class="card-title">Formal Leather Shoes</div>
           <div class="card-category">Men · Office</div>
@@ -151,7 +152,7 @@
       </div>
 
       <div class="card">
-        <img src="dress/shoes3.jpg" alt="Kids Sneakers">
+    <a href="{% url 'product_detail' 16 %}"><img src="{% static 'img/shoes3.jpg'%}" alt="Floral Maxi Dress"></a>
         <div class="card-content">
           <div class="card-title">Kids Sneakers</div>
           <div class="card-category">Boys · Sporty</div>
