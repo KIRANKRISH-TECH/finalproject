@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Summary</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .summary-container {
+      width: 90%;
+      max-width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    .total-row {
+      font-weight: bold;
+    }
+
+    .btn-back {
+      display: block;
+      width: 150px;
+      margin: 20px auto 0;
+      padding: 10px;
+      text-align: center;
+      background: #222;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .btn-back:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+<div class="summary-container">
+  <h2>Order Summary</h2>
+
+  <p><strong>Order ID:</strong> {{ order.id }}</p>
+  <p><strong>Status:</strong> {{ order.status }}</p>
+  <p><strong>Delivery Address:</strong> {{ order.Delivery_address }}</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price (₹)</th>
+        <th>Total (₹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order_items %}
+      <tr>
+        <td>{{ item.productname }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.total }}</td>
+      </tr>
+      {% endfor %}
+      <tr class="total-row">
+        <td colspan="1">Total</td>
+        <td>{{ total_quantity }}</td>
+        <td></td>
+        <td>₹{{ total_price }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="{% url 'index' %}" class="btn-back">Back to Home</a>
+</div>
+
+</body>
+</html>

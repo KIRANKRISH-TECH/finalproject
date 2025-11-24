@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    .checkout-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .order-summary {
+      background: #fafafa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      font-size: 16px;
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label for="id_full_name">Full Name</label>
+    {{ form.full_name }}
+
+    <label for="id_address">Address</label>
+    {{ form.address }}
+
+    <label for="id_city">City</label>
+    {{ form.city }}
+
+    <label for="id_postal_code">Postal Code</label>
+    {{ form.postal_code }}
+
+    <label for="id_country">Country</label>
+    {{ form.country }}
+
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+
+      <div class="summary-row">
+        <span>Total Quantity</span>
+        <strong>{{ total_quantity }}</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Total Price</span>
+        <strong>₹{{ total_price }}</strong>
+      </div>
+    </div>
+
+    <button class="btn" type="submit">Place Order</button>
+  </form>
+</div>
+
+</body>
+</html>
