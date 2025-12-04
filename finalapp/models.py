@@ -60,7 +60,21 @@ class Orderitem(models.Model):
     def total(self):
                 return self.quantity * self.price
     def __str__(self):
-                    return f"{self.productname}  {self.quantity}"
+                    return f"{self.product.title} x {self.quantity}"
+# class Orderitem(models.Model):
+#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+#     product = models.ForeignKey(SingleProduct, on_delete=models.CASCADE)
+#     quantity = models.PositiveIntegerField()
+#     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+#     # Use @property for easier access
+#     @property
+#     def total(self):
+#         return self.quantity * self.price
+
+#     def __str__(self):
+#         return f"{self.product.title} x {self.quantity}"  # Fixed attribute name
+
 from django.contrib.auth.models import User
               
 class Billing(models.Model):
@@ -71,6 +85,10 @@ class Billing(models.Model):
     city = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=20)
     country = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.full_name} - {self.address}"
+
                 
 
                 

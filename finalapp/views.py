@@ -14,6 +14,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import razorpay
+from django.conf import settings
 
 # -----------------------------
 # Register View
@@ -219,7 +221,7 @@ def checkout(request):
 
             # Create order
             order = Order.objects.create(
-                user=request.user,
+                user=request.user.username,
                 total_price=total_price,
                 total_quantity=total_quantity,
                 Delivery_address=billing_details.address,
@@ -250,32 +252,124 @@ def checkout(request):
         'form': form
     })
 
-
 def order_summary(request, order_id):
-    order_obj = Order.objects.filter(id=order_id, user=request.user).first()
 
-    if not order_obj:
+    # Fetch the order
+    order = Order.objects.filter(id=order_id, user=request.user).first()
+
+    if not order:
         messages.error(request, "Order not found.")
-        return redirect('cart') 
+        return redirect('cart')
 
-    order_items = Orderitem.objects.filter(order=order_obj)
+    # Fetch order items
+    order_items = Orderitem.objects.filter(order=order)
 
-    total_price = sum(item.quantity * item.price for item in order_items)
+    # FIXED: Call the total() method
+    total_price = sum(item.total() for item in order_items)
     total_quantity = sum(item.quantity for item in order_items)
 
-    order_items_with_names = [
-        {
-            'productname': item.product.title,
-            'quantity': item.quantity,
-            'price': item.price,
-            'total': item.quantity * item.price
-        }
-        for item in order_items
-    ]
+    # Razorpay Client
+    client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
-    return render(request, 'order_summary.html', {
-        'order': order_obj,
-        'order_items': order_items_with_names,
-        'total_price': total_price,
-        'total_quantity': total_quantity
+    razorpay_order = client.order.create({
+        "amount": int(total_price * 100),
+        "currency": "INR",
+        "payment_capture": 1
     })
+
+    context = {
+        "order": order,
+        "order_items": order_items,
+        "total_price": total_price,
+        "total_quantity": total_quantity,
+        "razorpay_order_id": razorpay_order["id"],
+        "razorpay_key": settings.RAZORPAY_KEY_ID,
+        "amount": int(total_price * 100),
+    }
+
+    return render(request, "order_summary.html", context)
+
+
+
+
+def payment_success(request):
+    payment_id = request.GET.get("payment_id")
+    order_id = request.GET.get("order_id")
+
+    if not payment_id or not order_id:
+        messages.error(request, "Invalid payment response")
+        return redirect("home")
+
+    # Fetch order
+    order = Order.objects.filter(id=order_id, user=request.user).first()
+    if not order:
+        messages.error(request, "Order not found")
+        return redirect("home")
+
+    # Mark order as paid
+    order.payment_id = payment_id
+    order.status = "PAID"
+    order.save()
+
+    return render(request, "payment_success.html", {
+        "order": order,
+        "payment_id": payment_id
+    })
+
+from django.shortcuts import render
+from .models import Order, Orderitem, Billing
+
+
+
+
+
+    # order_items = Orderitem.objects.filter(order=order_obj)
+
+    # total_price = sum(item.quantity * item.price for item in order_items)
+    # total_quantity = sum(item.quantity for item in order_items)
+
+    # order_items_with_names = [
+    #     {
+    #         'productname': item.product.title,
+    #         'quantity': item.quantity,
+    #         'price': item.price,
+    #         'total': item.quantity * item.price
+    #     }
+    #     for item in order_items
+    # ]
+
+    # return render(request, 'order_summary.html', {
+    #     'order': order_obj,
+    #     'order_items': order_items_with_names,
+    #     'total_price': total_price,
+    #     'total_quantity': total_quantity
+    # })
+
+
+from django.shortcuts import render
+from .models import Order, Orderitem
+from django.contrib.auth.decorators import login_required
+
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Order, Orderitem
+
+@login_required
+def order_history(request):
+    # Corrected: use order_date instead of created_at
+    orders = Order.objects.filter(user=request.user).order_by('-order_date')
+
+    order_data = []
+
+    for order in orders:
+        items = Orderitem.objects.filter(order=order)
+
+        order_data.append({
+            "order": order,
+            "items": items,
+            "total_price": sum(item.total() for item in items),
+            "total_quantity": sum(item.quantity for item in items),
+        })
+
+    return render(request, "order_history.html", {"order_data": order_data})
