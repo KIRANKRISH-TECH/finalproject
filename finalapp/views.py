@@ -373,3 +373,43 @@ def order_history(request):
         })
 
     return render(request, "order_history.html", {"order_data": order_data})
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Wishlist, SingleProduct
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+@login_required
+def wishlist(request):
+    items = Wishlist.objects.filter(user=request.user)
+    return render(request, 'wishlist.html', {'wishlist_items': items})
+
+@login_required
+def add_to_wishlist(request, product_id):
+    product = get_object_or_404(SingleProduct, id=product_id)
+    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+
+    if created:
+        messages.success(request, f"{product.title} added to your wishlist.")
+    else:
+        messages.info(request, f"{product.title} is already in your wishlist.")
+    return redirect('wishlist')
+
+@login_required
+def remove_from_wishlist(request, item_id):
+    wishlist_item = get_object_or_404(Wishlist, id=item_id, user=request.user)
+    wishlist_item.delete()
+    messages.success(request, "Item removed from your wishlist.")
+    return redirect('wishlist')
+
+
+
+
+
+
+
+
+
+
+

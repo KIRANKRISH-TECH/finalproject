@@ -23,12 +23,15 @@ urlpatterns = [
     path('order_summary/<int:order_id>/', views.order_summary, name='order_summary'),
     path("payment-success/", views.payment_success, name="payment_success"),
     path("order-history/", views.order_history, name="order_history"),
+     path('wishlist/', views.wishlist, name='wishlist'),
+    path('add_to_wishlist/<int:product_id>/', views.add_to_wishlist, name='add_to_wishlist'),
+    path('remove_from_wishlist/<int:item_id>/', views.remove_from_wishlist, name='remove_from_wishlist'),
 
 
 
 
-
-# 
+  
 ]           
+
 
 
